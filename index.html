@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tschonn.es</title>
-    <meta name="description" content="My name is Jonas (often mispronounced as Tschonnes) and I am a software developer. Wave at me to get in contact!">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+    <title>lynnheilmann.com</title>
+    <meta name="description" content="My name is Lynn and my father created this website.">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
@@ -38,11 +37,22 @@
         html, body {
             font-family: monospace;
             color: #121212;
-            background: #fff;
+            background-color: #fff;
             height: 100%;
         }
 
+        .background {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
         .content {
+            position: relative;
+            z-index: 2;
             height: 100%;
         }
 
@@ -54,21 +64,56 @@
         }
 
         .main {
-            flex: 1;
+            background: #fff;
+            padding: 3rem 11.25rem;
+        }
+
+        .main::after {
+            content: "";
+            background: #fff;
+            width: 26rem;
+            height: 26rem;
+            transform: rotate(45deg);
+            z-index: -1;
+            position: absolute;
+        }
+
+        .title {
+            display: flex;
+            flex-direction: row;
         }
 
         h1 {
+            display: inline-block;
             cursor: default;
         }
 
         .dot {
-            color: #ff5c28;
+            color: #379634;
             margin: 0 -4px;
         }
+        
+        .domains {
+            display: flex;
+            flex-direction: column;
+            height: 2rem;
+            overflow: hidden;
+        }
 
-        .wave {
+        .domain {
+            animation-name: step;
+            -webkit-animation-name: step;
+            animation-duration: 1500ms;
+            -webkit-animation-duration: 1500ms;
+            animation-iteration-count: infinite;
+            -webkit-animation-iteration-count: infinite;
+            animation-timing-function: steps(3, jump-none);
+            -webkit-animation-timing-function: steps(3, jump-none);
+        }
+
+        .baby {
             animation-play-state: paused;
-            transform-origin: bottom right;
+            transform-origin: bottom center;
             animation-name: wiggle;
             -webkit-animation-name: wiggle;
             animation-duration: 700ms;
@@ -79,12 +124,12 @@
             -webkit-animation-timing-function: ease-in-out;
         }
 
-        .wave a {
+        .baby a {
             font-size: 8em;
             text-decoration: none;
         }
 
-        .wave:hover {
+        .baby:hover {
             animation-play-state: running;
         }
 
@@ -112,14 +157,24 @@
             100% {transform: rotate(0deg);}
         }
 
+        @-webkit-keyframes step {
+            0% {-webkit-transform: translateY(0rem);}
+            100% {-webkit-transform: translateY(-4.6rem);}
+        }
+
+        @keyframes step {
+            0% {transform: translateY(0rem);}
+            100% {transform: translateY(-4.6rem);}
+        }
+
         @media (prefers-color-scheme: dark) {
             body {
                 color: #eee;
                 background: #121212;
             }
 
-            .links a {
-                color: #eee;
+            .main, .main::after {
+                background: #121212;
             }
         }
     </style>
@@ -127,14 +182,18 @@
 <body>
     <div class="content">
         <div class="main">
-            <h1>tschonn<span class="dot">.</span>es</h1>
+            <div class="title">
+                <h1>lynnheilmann<span class="dot">.</span></h1>
+                <h1 class="domains">
+                    <span class="domain">com</span>
+                    <span class="domain">se</span>
+                    <span class="domain">de</span>
+                </h1>
+            </div>
             <br>
-            <p class="wave">
-                <a href="mailto:hi@tschonn.es">&#x1F44B;</a>
+            <p class="baby">
+                <a href="mailto:lynn@heilmann.cool">&#x1F476;</a>
             </p>
-        </div>
-        <div class="links">
-            <a href="https://www.linkedin.com/in/tschonnes/" target="blank"><i class="fab fa-linkedin"></i></a>
         </div>
     </div>
 </body>
